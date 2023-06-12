@@ -1109,6 +1109,8 @@ PODS:
     - React-jsi (= 0.71.10)
     - React-logger (= 0.71.10)
     - React-perflogger (= 0.71.10)
+  - RNCPicker (2.4.10):
+    - React-Core
   - RNFBApp (18.0.0):
     - Firebase/CoreOnly (= 10.10.0)
     - React-Core
@@ -1165,6 +1167,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
@@ -1261,6 +1264,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
@@ -1326,6 +1331,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: d13cc2d63286c633393d3a7f6f607cc2a09ec011
   React-runtimeexecutor: a9a1cd79996c9a0846e3232ecb25c64e1cc0172e
   ReactCommon: e7a0cdbb67f8da60677db83d693dea816780a6e9
+  RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   RNFBApp: 10aa0ab560e30186c39a9756846945cac6499ea7
   RNFBAuth: a9817ae1e23f852b58514f9122809a5dc4c4071a
   RNFBFirestore: 1e207f58ce1e95cb9e90ea6d5f4d7db4a674a83d
@@ -1335,4 +1341,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c4f66d1de351a9ab3ff82204e2a7c704dbc247ab
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

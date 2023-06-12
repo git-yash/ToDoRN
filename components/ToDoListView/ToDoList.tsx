@@ -15,7 +15,7 @@ const ToDoList = (props: {navigation: any}) => {
     // Customize the header
     props.navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => props.navigation.navigate('AddToDo')}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Add ToDo')}>
           <FontAwesomeIcon icon={faPlus} size={25} />
         </TouchableOpacity>
       ),

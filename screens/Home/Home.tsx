@@ -1,8 +1,7 @@
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import {Pressable, Text, View} from 'react-native';
-import ToDoItem from '../../components/ToDoView/ToDoItem';
-import ToDoList from "../../components/ToDoListView/ToDoList";
+import ToDoList from '../../components/ToDoListView/ToDoList';
 
 const Home = (props: {navigation: any}) => {
   const hasUnsavedChanges = true;

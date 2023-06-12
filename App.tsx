@@ -11,6 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LogIn from './screens/LogIn/LogIn';
 import SignUp from './screens/SignUp/SignUp';
 import Home from './screens/Home/Home';
+import AddToDo from './screens/AddToDo/AddToDo';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -37,6 +38,7 @@ function App(): JSX.Element {
             headerBackVisible: false,
           }}
         />
+        <Stack.Screen name="Add ToDo" component={AddToDo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
