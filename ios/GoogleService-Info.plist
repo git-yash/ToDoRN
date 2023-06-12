@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>132591313514-pbhng0fu2dlddioquoapbej27q0p8jqc.apps.googleusercontent.com</string>
+	<string>132591313514-pf7m784onh7259oegi9cat0b3ulecdse.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.132591313514-pbhng0fu2dlddioquoapbej27q0p8jqc</string>
+	<string>com.googleusercontent.apps.132591313514-pf7m784onh7259oegi9cat0b3ulecdse</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDiV7JWvsfZGAlcUQmQSYjtAxrZQMLIW8g</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.ToDoApp</string>
+	<string>org.reactjs.native.example.ToDo</string>
 	<key>PROJECT_ID</key>
 	<string>todoapp-852fe</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:132591313514:ios:a11feb54a8fed8e3006013</string>
+	<string>1:132591313514:ios:8bc7b6a8f4eb4a16006013</string>
 </dict>
 </plist>
