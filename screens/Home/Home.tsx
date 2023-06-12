@@ -1,15 +1,30 @@
 import React from 'react';
 import auth from '@react-native-firebase/auth';
 import {Pressable, Text, View} from 'react-native';
+import ToDoItem from '../../components/ToDoView/ToDoItem';
 
 const Home = (props: {navigation: any}) => {
+  const hasUnsavedChanges = true;
+
+  React.useEffect(
+    () =>
+      props.navigation.addListener(
+        'beforeRemove',
+        (e: {preventDefault: () => void}) => {
+          if (!hasUnsavedChanges) {
+            return;
+          }
+          e.preventDefault();
+        },
+      ),
+    [props.navigation, hasUnsavedChanges],
+  );
+
   return (
     <View>
       {auth().currentUser && (
         <View>
-          <Text>Home Screen</Text>
           <Text>{auth().currentUser?.email}</Text>
-
           <Text>{auth().currentUser?.displayName}</Text>
         </View>
       )}
@@ -24,6 +39,11 @@ const Home = (props: {navigation: any}) => {
           }}>
           <Text>Sign Out</Text>
         </Pressable>
+        <ToDoItem
+          title="Go to doctor"
+          completed={false}
+          navigation={props.navigation}
+        />
       </View>
     </View>
   );

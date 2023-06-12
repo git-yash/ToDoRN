@@ -31,7 +31,11 @@ function App(): JSX.Element {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false}}
+          options={{
+            headerShown: true,
+            headerBackButtonMenuEnabled: false,
+            headerBackVisible: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
