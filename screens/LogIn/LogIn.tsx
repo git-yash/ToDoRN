@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import logInStyles from './LogIn.style';
 
 const LogIn = (props: {navigation: any}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleLogin = () => {
-    // Handle login logic here
+    // Handle login logic with the captured input values
     console.log('Login button pressed');
+    console.log('Email:', email);
+    console.log('Password:', password);
   };
 
   const handleForgotPassword = () => {
@@ -27,6 +32,8 @@ const LogIn = (props: {navigation: any}) => {
           placeholder="Email"
           placeholderTextColor="#ffffff"
           autoCapitalize="none"
+          value={email}
+          onChangeText={text => setEmail(text)}
         />
       </View>
       <View style={logInStyles.inputView}>
@@ -35,6 +42,8 @@ const LogIn = (props: {navigation: any}) => {
           placeholder="Password"
           placeholderTextColor="#ffffff"
           secureTextEntry
+          value={password}
+          onChangeText={text => setPassword(text)}
         />
       </View>
       <TouchableOpacity onPress={handleForgotPassword}>
@@ -44,9 +53,7 @@ const LogIn = (props: {navigation: any}) => {
         <Text style={logInStyles.loginButtonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleGoToSignUp}>
-        <Text style={logInStyles.signupText}>
-          Don't have an account? Sign up
-        </Text>
+        <Text style={logInStyles.signupText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
     </View>
   );
