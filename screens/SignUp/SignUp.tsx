@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import signUpStyles from './SignUp.style';
+import auth from '@react-native-firebase/auth';
 
 const SignUp = (props: {navigation: any}) => {
   const [name, setName] = useState('');
@@ -8,11 +9,25 @@ const SignUp = (props: {navigation: any}) => {
   const [password, setPassword] = useState('');
 
   const handleSignUp = () => {
-    // Handle sign up logic with the captured input values
-    console.log('Sign Up button pressed');
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        if (userCredentials.user) {
+          userCredentials.user
+            .updateProfile({
+              displayName: name,
+            })
+            .then(() => {
+              setEmail('');
+              setPassword('');
+              props.navigation.navigate('Home');
+            });
+        }
+      })
+      .catch(function (error) {
+        // Alert.alert(error);
+        console.log(error);
+      });
   };
 
   const handleAlreadyHaveAccount = () => {
@@ -30,6 +45,7 @@ const SignUp = (props: {navigation: any}) => {
           placeholderTextColor="#ffffff"
           autoCapitalize="words"
           value={name}
+          keyboardType="default"
           onChangeText={text => setName(text)}
         />
       </View>
@@ -40,6 +56,7 @@ const SignUp = (props: {navigation: any}) => {
           placeholderTextColor="#ffffff"
           autoCapitalize="none"
           value={email}
+          keyboardType="email-address"
           onChangeText={text => setEmail(text)}
         />
       </View>

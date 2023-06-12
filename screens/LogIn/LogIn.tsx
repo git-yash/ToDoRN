@@ -1,16 +1,48 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
 import logInStyles from './LogIn.style';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 const LogIn = (props: {navigation: any}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+
+  // Handle user state changes
+  function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
+    setUser(user);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      props.navigation.navigate('Home');
+    }
+  });
+
+  useEffect(() => {
+    return auth().onAuthStateChanged(onAuthStateChanged); // unsubscribe on unmount
+  });
+
+  if (initializing) {
+    return null;
+  }
+
   const handleLogin = () => {
-    // Handle login logic with the captured input values
-    console.log('Login button pressed');
-    console.log('Email:', email);
-    console.log('Password:', password);
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(function () {
+        setEmail('');
+        setPassword('');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleForgotPassword = () => {
@@ -33,6 +65,7 @@ const LogIn = (props: {navigation: any}) => {
           placeholderTextColor="#ffffff"
           autoCapitalize="none"
           value={email}
+          keyboardType="email-address"
           onChangeText={text => setEmail(text)}
         />
       </View>
@@ -53,7 +86,9 @@ const LogIn = (props: {navigation: any}) => {
         <Text style={logInStyles.loginButtonText}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleGoToSignUp}>
-        <Text style={logInStyles.signupText}>Don't have an account? Sign up</Text>
+        <Text style={logInStyles.signupText}>
+          Don't have an account? Sign up
+        </Text>
       </TouchableOpacity>
     </View>
   );
