@@ -2,6 +2,7 @@ import React from 'react';
 import auth from '@react-native-firebase/auth';
 import {Pressable, Text, View} from 'react-native';
 import ToDoItem from '../../components/ToDoView/ToDoItem';
+import ToDoList from "../../components/ToDoListView/ToDoList";
 
 const Home = (props: {navigation: any}) => {
   const hasUnsavedChanges = true;
@@ -39,11 +40,7 @@ const Home = (props: {navigation: any}) => {
           }}>
           <Text>Sign Out</Text>
         </Pressable>
-        <ToDoItem
-          title="Go to doctor"
-          completed={false}
-          navigation={props.navigation}
-        />
+        <ToDoList navigation={props.navigation} />
       </View>
     </View>
   );

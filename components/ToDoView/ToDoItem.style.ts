@@ -32,15 +32,12 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     color: '#a9a9a9',
   },
-  deleteButton: {
-    backgroundColor: '#fb5b5a',
-    borderRadius: 25,
-    paddingHorizontal: 15,
-    paddingVertical: 8,
+  editIcon: {
+    paddingRight: 50,
   },
-  deleteButtonText: {
-    color: 'white',
-    fontSize: 14,
+  checkIcon: {
+    paddingRight: 50,
+    color: '#fb5b5a',
   },
 });
 
