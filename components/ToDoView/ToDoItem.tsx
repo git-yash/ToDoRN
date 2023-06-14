@@ -7,6 +7,8 @@ import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {faCircleCheck} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import ToDo from '../../models/ToDo';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 type TodoItemProps = {
   toDo: ToDo;
@@ -15,14 +17,31 @@ type TodoItemProps = {
 
 const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
   const [isComplete, setIsComplete] = useState(props.toDo.completed);
+  const displayName: any = auth().currentUser?.displayName;
 
   const handleToggleComplete = () => {
     console.log('Toggle complete');
     setIsComplete(!isComplete);
+    firestore()
+      .collection('Users')
+      .doc(displayName)
+      .collection('ToDos')
+      .doc(props.toDo.id)
+      .update({
+        completed: !isComplete,
+      });
   };
 
   const handleDelete = () => {
-    console.log('delete');
+    firestore()
+      .collection('Users')
+      .doc(displayName)
+      .collection('ToDos')
+      .doc(props.toDo.id)
+      .delete()
+      .then(() => {
+        console.log('delete');
+      });
   };
 
   const handleEdit = () => {
