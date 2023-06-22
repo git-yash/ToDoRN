@@ -4,22 +4,6 @@ import {Pressable, Text, View} from 'react-native';
 import ToDoList from '../../components/ToDoListView/ToDoList';
 
 const Home = (props: {navigation: any}) => {
-  const hasUnsavedChanges = true;
-
-  React.useEffect(
-    () =>
-      props.navigation.addListener(
-        'beforeRemove',
-        (e: {preventDefault: () => void}) => {
-          if (!hasUnsavedChanges) {
-            return;
-          }
-          e.preventDefault();
-        },
-      ),
-    [props.navigation, hasUnsavedChanges],
-  );
-
   return (
     <View>
       {auth().currentUser && (

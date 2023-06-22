@@ -46,17 +46,16 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
         const todoItems: ToDo[] = [];
 
         snapshot.forEach(doc => {
-          const {title, completed, dateDue, priority} = doc.data();
+          const {id, title, completed, dateDue, priority} = doc.data();
 
           todoItems.push({
-            id: doc.id,
+            id: id,
             title,
             completed,
-            dateDue: dateDue.toDate(),
+            dateDue: new Date(dateDue),
             priority,
           });
         });
-
         setTodos(todoItems);
       } catch (error) {
         console.log('Error fetching todo items:', error);
@@ -66,7 +65,6 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
     fetchTodoItems();
   }, [displayName]);
 
-  console.log(todos);
   return todos;
 };
 
