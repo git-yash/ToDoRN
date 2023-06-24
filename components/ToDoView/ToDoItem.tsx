@@ -58,8 +58,9 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
         />
       </TouchableOpacity>
       <Text style={[styles.title, isComplete && styles.completed]}>
-        {props.toDo.title}
+        {props.toDo.title} {props.toDo.priority}
       </Text>
+      <Text>{props.toDo.dateDue.toLocaleDateString()}</Text>
       <TouchableOpacity onPress={handleEdit}>
         <FontAwesomeIcon
           icon={faPen}

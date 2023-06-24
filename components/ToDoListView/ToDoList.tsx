@@ -46,10 +46,10 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
         const todoItems: ToDo[] = [];
 
         snapshot.forEach(doc => {
-          const {id, title, completed, dateDue, priority} = doc.data();
+          const {title, completed, dateDue, priority} = doc.data();
 
           todoItems.push({
-            id: id,
+            id: doc.id,
             title,
             completed,
             dateDue: new Date(dateDue),

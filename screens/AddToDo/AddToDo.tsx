@@ -9,10 +9,11 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import DatePicker from "react-native-date-picker";
 
 const AddToDo = (props: {navigation: any}) => {
   const [title, setTitle] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState(new Date());
   const [priority, setPriority] = useState('');
 
   const handleAddTodo = () => {
@@ -37,12 +38,7 @@ const AddToDo = (props: {navigation: any}) => {
         onChangeText={setTitle}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Due Date"
-        value={dueDate}
-        onChangeText={setDueDate}
-      />
+      <DatePicker date={dueDate} onDateChange={setDueDate} />
 
       <Picker
         style={styles.picker}
@@ -63,8 +59,8 @@ const AddToDo = (props: {navigation: any}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: '20%',
   },
   input: {
     width: '80%',
@@ -80,15 +76,13 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: 'blue',
     padding: 10,
+    borderRadius: 10,
   },
   addButtonText: {
     color: 'white',
   },
   picker: {
     width: '80%',
-    height: 50,
-    borderWidth: 1,
-    borderColor: 'black',
   },
 });
 
