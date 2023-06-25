@@ -10,6 +10,7 @@ import ToDo from '../../models/ToDo';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import Util from '../../Util';
+import ToDos from '../../models/ToDos';
 
 type TodoItemProps = {
   toDo: ToDo;
@@ -19,10 +20,11 @@ type TodoItemProps = {
 const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
   const [isComplete, setIsComplete] = useState(props.toDo.completed);
   const displayName: any = auth().currentUser?.displayName;
-  const dateTime: String = Util.getDateString(Util.toDateTime(props.toDo.dateDue.seconds));
+  const dateTime: String = Util.getDateString(
+    Util.toDateTime(props.toDo.dateDue.seconds),
+  );
 
   const handleToggleComplete = () => {
-    console.log('Toggle complete');
     setIsComplete(!isComplete);
     firestore()
       .collection('Users')
@@ -32,6 +34,8 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
       .update({
         completed: !isComplete,
       });
+    props.toDo.completed = !isComplete;
+    console.log(ToDos.toDos);
   };
 
   const handleDelete = () => {
@@ -42,7 +46,7 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
       .doc(props.toDo.id)
       .delete()
       .then(() => {
-        console.log('delete');
+        ToDos.deleteTodo(ToDos.getTodoIndexFromID(props.toDo.id));
       });
   };
 

@@ -6,11 +6,11 @@ import ToDo from '../../models/ToDo';
 import firestore from '@react-native-firebase/firestore'; // Update the import name to match the export name
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import ToDoItem from '../ToDoView/ToDoItem';
+import ToDos from '../../models/ToDos';
 
 const ToDoList = (props: {navigation: any}) => {
   const displayName: any = auth().currentUser?.displayName; // Replace with the actual user ID
-  const todos: ToDo[] = useFetchTodoItems(displayName);
+  ToDos.toDos = useFetchTodoItems(displayName);
 
   React.useLayoutEffect(() => {
     // Customize the header
@@ -25,7 +25,7 @@ const ToDoList = (props: {navigation: any}) => {
 
   return (
     <View>
-      {todos.map(todo => (
+      {ToDos.toDos.map(todo => (
         <TodoItem key={todo.id} toDo={todo} navigation={props.navigation} />
       ))}
     </View>
@@ -64,7 +64,7 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
     };
 
     fetchTodoItems();
-  }, [displayName]);
+  }, [displayName, todos]);
 
   return todos;
 };
