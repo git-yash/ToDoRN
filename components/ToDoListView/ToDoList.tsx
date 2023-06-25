@@ -6,6 +6,7 @@ import ToDo from '../../models/ToDo';
 import firestore from '@react-native-firebase/firestore'; // Update the import name to match the export name
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import ToDoItem from '../ToDoView/ToDoItem';
 
 const ToDoList = (props: {navigation: any}) => {
   const displayName: any = auth().currentUser?.displayName; // Replace with the actual user ID
@@ -52,7 +53,7 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
             id: doc.id,
             title,
             completed,
-            dateDue: new Date(dateDue),
+            dateDue: dateDue,
             priority,
           });
         });

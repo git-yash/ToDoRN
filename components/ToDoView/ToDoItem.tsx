@@ -9,6 +9,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import ToDo from '../../models/ToDo';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import Util from '../../Util';
 
 type TodoItemProps = {
   toDo: ToDo;
@@ -18,6 +19,7 @@ type TodoItemProps = {
 const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
   const [isComplete, setIsComplete] = useState(props.toDo.completed);
   const displayName: any = auth().currentUser?.displayName;
+  const dateTime: String = Util.getDateString(Util.toDateTime(props.toDo.dateDue.seconds));
 
   const handleToggleComplete = () => {
     console.log('Toggle complete');
@@ -57,10 +59,12 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
           style={styles.checkIcon}
         />
       </TouchableOpacity>
-      <Text style={[styles.title, isComplete && styles.completed]}>
-        {props.toDo.title} {props.toDo.priority}
-      </Text>
-      <Text>{props.toDo.dateDue.toLocaleDateString()}</Text>
+      <View style={styles.textContainer}>
+        <Text style={[styles.title, isComplete && styles.completed]}>
+          {props.toDo.title} {props.toDo.priority}
+        </Text>
+        <Text style={styles.dateText}>{dateTime}</Text>
+      </View>
       <TouchableOpacity onPress={handleEdit}>
         <FontAwesomeIcon
           icon={faPen}

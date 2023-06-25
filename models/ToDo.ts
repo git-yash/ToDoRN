@@ -1,4 +1,4 @@
-import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
+import {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import Timestamp = FirebaseFirestoreTypes.Timestamp;
 
 export default class ToDo {
@@ -6,7 +6,7 @@ export default class ToDo {
   public title: string;
   public priority: string;
   public completed: boolean;
-  public dateDue: Date;
+  public dateDue: Timestamp;
 
   constructor(
     id: string,
@@ -19,6 +19,6 @@ export default class ToDo {
     this.title = title;
     this.priority = priority;
     this.completed = completed;
-    this.dateDue = dateDue.toDate();
+    this.dateDue = dateDue;
   }
 }

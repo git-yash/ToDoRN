@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'white',
     fontSize: 16,
+    paddingBottom: 20,
   },
   completed: {
     textDecorationLine: 'line-through',
@@ -38,6 +39,13 @@ const styles = StyleSheet.create({
   checkIcon: {
     paddingRight: 50,
     color: '#fb5b5a',
+  },
+  textContainer: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  dateText: {
+    color: '#d2d6d3',
   },
 });
 
