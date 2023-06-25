@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-import DatePicker from "react-native-date-picker";
+import firestore, {firebase} from '@react-native-firebase/firestore';
+import DatePicker from 'react-native-date-picker';
 
 const AddToDo = (props: {navigation: any}) => {
   const [title, setTitle] = useState('');
@@ -19,14 +19,19 @@ const AddToDo = (props: {navigation: any}) => {
   const handleAddTodo = () => {
     const displayName: any = auth().currentUser?.displayName;
 
-    firestore().collection('Users').doc(displayName).collection('ToDos').add({
-      completed: false,
-      dateDue: dueDate,
-      priority: priority,
-      title: title,
-    });
-
-    props.navigation.navigate('Home');
+    firestore()
+      .collection('Users')
+      .doc(displayName)
+      .collection('ToDos')
+      .add({
+        completed: false,
+        dateDue: firebase.firestore.Timestamp.fromDate(dueDate),
+        priority: priority,
+        title: title,
+      })
+      .then(() => {
+        props.navigation.navigate('Home');
+      });
   };
 
   return (
