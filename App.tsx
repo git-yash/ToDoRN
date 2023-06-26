@@ -12,6 +12,7 @@ import LogIn from './screens/LogIn/LogIn';
 import SignUp from './screens/SignUp/SignUp';
 import Home from './screens/Home/Home';
 import AddToDo from './screens/AddToDo/AddToDo';
+import EditToDo from './screens/EditToDo/EditToDo';
 
 function App(): JSX.Element {
   const Stack = createNativeStackNavigator();
@@ -39,6 +40,7 @@ function App(): JSX.Element {
           }}
         />
         <Stack.Screen name="Add ToDo" component={AddToDo} />
+        <Stack.Screen name="Edit ToDo" component={EditToDo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

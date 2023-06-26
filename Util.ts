@@ -35,7 +35,9 @@ export default class Util {
   }
 
   public static getDateString(date: Date): String {
-    // return getDay(date.getDay()) + ' ' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' ' date
+    if (!date) {
+      return '';
+    }
     return Util.getDay(date.getDay()) + ' ' + date.toLocaleString();
   }
 }

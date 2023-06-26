@@ -17,4 +17,8 @@ export default class ToDos {
   public static deleteTodo(index: number): void {
     this.toDos.splice(index, 1);
   }
+
+  public static editTodo(index: number, tempToDo: ToDo): void {
+    this.toDos[index] = tempToDo;
+  }
 }

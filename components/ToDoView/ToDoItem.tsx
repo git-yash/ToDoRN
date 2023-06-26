@@ -51,7 +51,7 @@ const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
   };
 
   const handleEdit = () => {
-    console.log('Edit');
+    props.navigation.navigate('Edit ToDo', {toDo: props.toDo});
   };
 
   return (

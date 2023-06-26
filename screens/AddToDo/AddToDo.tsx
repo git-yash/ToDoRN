@@ -10,6 +10,7 @@ import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import DatePicker from 'react-native-date-picker';
+import styles from './AddToDo.style';
 
 const AddToDo = (props: {navigation: any}) => {
   const [title, setTitle] = useState('');
@@ -25,7 +26,7 @@ const AddToDo = (props: {navigation: any}) => {
       .collection('ToDos')
       .add({
         completed: false,
-        dateDue: firebase.firestore.Timestamp.fromDate(dueDate),
+        dateDue: firebase.firestore.Timestamp.fromDate(dueDate), //TODO: the date is minus one
         priority: priority,
         title: title,
       })
@@ -60,35 +61,5 @@ const AddToDo = (props: {navigation: any}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    paddingTop: '20%',
-  },
-  input: {
-    width: '80%',
-    marginBottom: 10,
-    padding: 10,
-    borderWidth: 1,
-  },
-  completedContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  addButton: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 10,
-  },
-  addButtonText: {
-    color: 'white',
-  },
-  picker: {
-    width: '80%',
-  },
-});
 
 export default AddToDo;
