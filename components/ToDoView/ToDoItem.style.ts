@@ -43,9 +43,11 @@ const styles = StyleSheet.create({
   textContainer: {
     flexDirection: 'column',
     flex: 1,
+    backgroundColor: 'blue',
   },
   dateText: {
     color: '#d2d6d3',
+    backgroundColor: 'red',
   },
 });
 

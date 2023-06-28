@@ -5,8 +5,10 @@ import TodoItem from '../ToDoView/ToDoItem';
 import ToDo from '../../models/ToDo';
 import firestore from '@react-native-firebase/firestore'; // Update the import name to match the export name
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import ToDos from '../../models/ToDos';
+import Util from '../../Util';
 
 const ToDoList = (props: {navigation: any}) => {
   const displayName: any = auth().currentUser?.displayName; // Replace with the actual user ID
@@ -16,9 +18,19 @@ const ToDoList = (props: {navigation: any}) => {
     // Customize the header
     props.navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => props.navigation.navigate('Add ToDo')}>
-          <FontAwesomeIcon icon={faPlus} size={25} />
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            onPress={() => {
+              auth().signOut().then(props.navigation.navigate('Log In'));
+            }}>
+            <FontAwesomeIcon icon={faRightFromBracket} size={25} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Add ToDo')}
+            style={{paddingLeft: 10}}>
+            <FontAwesomeIcon icon={faPlus} size={25} />
+          </TouchableOpacity>
+        </View>
       ),
     });
   }, [props.navigation]);
@@ -53,7 +65,7 @@ const useFetchTodoItems = (displayName: string): ToDo[] => {
             id: doc.id,
             title,
             completed,
-            dateDue: dateDue,
+            dateDue: Util.toDateTime(dateDue.seconds),
             priority,
           });
         });

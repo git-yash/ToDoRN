@@ -20,9 +20,7 @@ type TodoItemProps = {
 const TodoItem: React.FunctionComponent<TodoItemProps> = props => {
   const [isComplete, setIsComplete] = useState(props.toDo.completed);
   const displayName: any = auth().currentUser?.displayName;
-  const dateTime: String = Util.getDateString(
-    Util.toDateTime(props.toDo.dateDue.seconds),
-  );
+  const dateTime: String = Util.getDateString(props.toDo.dateDue);
 
   const handleToggleComplete = () => {
     setIsComplete(!isComplete);

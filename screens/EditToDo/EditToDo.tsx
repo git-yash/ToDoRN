@@ -12,7 +12,7 @@ const EditToDo = ({route, navigation}) => {
   const {toDo} = route.params;
 
   const [title, setTitle] = useState(toDo?.title);
-  const [dueDate, setDueDate] = useState(new Date()); // TODO: fix this date issue
+  const [dueDate, setDueDate] = useState(toDo?.dateDue);
   const [priority, setPriority] = useState(toDo?.priority);
   const displayName: any = auth().currentUser?.displayName;
 
