@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import logInStyles from './LogIn.style';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
@@ -46,8 +46,7 @@ const LogIn = (props: {navigation: any}) => {
   };
 
   const handleForgotPassword = () => {
-    // Handle forgot password logic here
-    console.log('Forgot Password button pressed');
+    props.navigation.navigate('Forgot Password');
   };
 
   const handleGoToSignUp = () => {

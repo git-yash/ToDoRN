@@ -18,7 +18,7 @@ const logInStyles = StyleSheet.create({
     backgroundColor: '#465881',
     borderRadius: 25,
     height: 50,
-    marginBottom: 20,
+    marginBottom: 10,
     justifyContent: 'center',
     padding: 20,
   },
